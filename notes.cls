@@ -9,6 +9,8 @@
 \newcommand  \@ifbothdef   [3]  {\@ifdef{#1}{\@ifdef{#2}{#3}}}
 \newcommand  \@ifnone      [2]  {\@elifdef{#1}{}{#2}}
 \newcommand  \@ifbothnone  [3]  {\@ifnone{#1}{\@ifnone{#2}{#3}}}
+\newcommand  \@ifnotempty  [2]  {\@elif{\equal{#1}{\@empty}}{}{#2}}
+
 
 
 % Datetime
@@ -60,7 +62,11 @@
 \RequirePackage{float}
 \RequirePackage{fancyhdr}
 \RequirePackage{environ}
-
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{titlesec}
+\RequirePackage{amsmath}
+\RequirePackage[titles]{tocloft}
+\usepackage{amssymb} %% <- for \square and \blacksuare
 
 
 %%% E N V I R O N M E N T S
@@ -77,7 +83,7 @@
     \begin{figure}[H]%
     \footnotesize%
     \resizebox{\ifdim\width>\marginparwidth\marginparwidth\else\width\fi}{!}{#2}%
-    \@elif{\equal{#1}{\@empty}}{}%
+    \@ifnotempty{#1}%%
       {%
         \par%
         \captionsetup{skip=0em,name=fig.,labelfont=bf,textfont=normalfont,justification=raggedright,singlelinecheck=off,font=footnotesize,width=\marginparwidth}%
@@ -97,7 +103,7 @@
     \begin{figure}[H]%
     \centering%
     \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{#2}%
-    \@elif{\equal{#1}{\@empty}}{}%
+    \@ifnotempty{#1}%
     {%
       \par%
       \captionsetup{skip=0.5em,labelfont=bf,textfont=normalfont,width=0.75\textwidth}%
@@ -108,6 +114,133 @@
 }
 \NewEnviron{fig}[1][\@empty]{\@fig{#1}{\BODY}{unstarred}}
 \NewEnviron{fig*}[1][\@empty]{\@fig{#1}{\BODY}{starred}}
+
+
+% theorems
+\newcounter{notes@theorem}[section]
+\newcounter{notes@proposition}[section]
+\newcounter{notes@corollary}[section]
+\newcounter{notes@lemma}[section]
+\newcounter{notes@example}[section]
+\NewEnviron{theorem}[1][\@empty]
+{%
+  \par%
+  \begin{tcolorbox}[%
+    enhanced,%
+    frame hidden,%
+    breakable, %
+    colback=black!40!cyan!8!white,%
+    arc=0.3em, left=0.5em, right=0.5em, top=1em, bottom=1em,leftrule=-1em,rightrule=-1em]%
+    \stepcounter{notes@theorem}%
+    \noindent%
+    {\large\scshape Theorem \arabic{section}.\arabic{notes@theorem}}%
+    {\hskip 0.4em\itshape\@ifnotempty{#1}{(#1)}}%
+    {.\par\vspace{-0.5em}\rule{4.5em}{0.6pt}\vskip0.75em\itshape\BODY}%
+  \end{tcolorbox}%
+  \vskip 0.5em%
+}
+\NewEnviron{proof}
+{%
+  \par%
+  \noindent%
+  {\itshape\lsstyle Proof.\hskip0.6em}%
+  {\BODY}%
+  {\hfill$\square$}
+  \vskip 0.5em%
+}
+% proposition
+\NewEnviron{proposition}[1][\@empty]
+{%
+  \par%
+  \begin{tcolorbox}[%
+    enhanced,%
+    frame hidden,%
+    breakable, %
+    colback=black!40!orange!8!white,%
+    arc=0.3em, left=0.5em, right=0.5em, top=1em, bottom=1em,leftrule=-1em,rightrule=-1em]%
+    \stepcounter{notes@proposition}%
+    \noindent%
+    {\scshape Proposition \arabic{section}.\arabic{notes@proposition}}%
+    {\hskip 0.4em\itshape\@ifnotempty{#1}{(#1)}}%
+    {.\hskip 0.6em\itshape\BODY}%
+  \end{tcolorbox}%
+  \vskip 0.5em%
+}
+
+% corollary
+\NewEnviron{corollary}[1][\@empty]
+{%
+  \par%
+  \begin{tcolorbox}[%
+    enhanced,%
+    frame hidden,%
+    breakable, %
+    colback=black!40!orange!8!white,%
+    arc=0.3em, left=0.5em, right=0.5em, top=1em, bottom=1em,leftrule=-1em,rightrule=-1em]%
+    \stepcounter{notes@corollary}%
+    \noindent%
+    {\scshape Corollary \arabic{section}.\arabic{notes@corollary}}%
+    {\hskip 0.4em\itshape\@ifnotempty{#1}{(#1)}}%
+    {.\hskip 0.6em\itshape\BODY}%
+  \end{tcolorbox}%
+  \vskip 0.5em%
+}
+
+% lemma
+\NewEnviron{lemma}[1][\@empty]
+{%
+  \par%
+  \begin{tcolorbox}[%
+    enhanced,%
+    frame hidden,%
+    breakable, %
+    colback=black!40!orange!8!white,%
+    arc=0.3em, left=0.5em, right=0.5em, top=1em, bottom=1em,leftrule=-1em,rightrule=-1em]%
+    \stepcounter{notes@lemma}%
+    \noindent%
+    {\scshape Lemma \arabic{section}.\arabic{notes@lemma}}%
+    {\hskip 0.4em\itshape\@ifnotempty{#1}{(#1)}}%
+    {.\hskip 0.6em\itshape\BODY}%
+  \end{tcolorbox}%
+  \vskip 0.5em%
+}
+
+% example
+\NewEnviron{example}[1][\@empty]
+{%
+  \par%
+  \begin{tcolorbox}[%
+    enhanced,%
+    frame hidden,%
+    breakable, %
+    colback=black!40!purple!8!white,%
+    arc=0.3em, left=0.5em, right=0.5em, top=1em, bottom=1em,leftrule=-1em,rightrule=-1em]%
+    \stepcounter{notes@example}%
+    \noindent%
+    {\large\scshape Example \arabic{section}.\arabic{notes@example}}%
+    {\hskip 0.4em\@ifnotempty{#1}{(#1)}}%
+    {.\par\vspace{-0.5em}\rule{4.5em}{0.6pt}\vskip0.75em\BODY}%
+  \end{tcolorbox}%
+  \vskip 0.5em%
+}
+
+% lemma
+\NewEnviron{remark}[1][\@empty]
+{%
+  \par%
+  \begin{tcolorbox}[%
+    enhanced,%
+    frame hidden,%
+    breakable, %
+    colback=black!60!white!8!white,%
+    arc=0.3em, left=0.5em, right=0.5em, top=1em, bottom=1em,leftrule=-1em,rightrule=-1em]%
+    \noindent%
+    {\scshape Remark}%
+    {\hskip 0.4em\@ifnotempty{#1}{(#1)}}%
+    {.\hskip 0.6em\BODY}%
+  \end{tcolorbox}%
+  \vskip 0.5em%
+}
 
 
 
@@ -122,7 +255,6 @@
 
 
 % section headers
-\RequirePackage{titlesec}
 \titleformat{\section}{\relax\Large\lsstyle}{\thesection}{1em}{\itshape}
 \titleformat{\subsection}{\relax\large\lsstyle}{\thesubsection}{1em}{\itshape}
 \titleformat{\subsubsection}{\relax\normalsize\lsstyle}{\thesubsubsection}{1em}{\itshape}
@@ -175,7 +307,7 @@
     \newgeometry{margin=1in}%
     \newpage%
     \null%
-    \vskip 1.5em%
+    \vskip1.5em%
     \itshape%
     \begin{flushleft}%
     \end{flushleft}%
@@ -187,17 +319,6 @@
     \newpage
     \null
     \begin{center}%
-      %%% Aside
-      \@ifnone\@nomargin{%
-        \marginpar
-        {%
-        %%% Authors
-        \@ifdef\@professor{\textls[100]{\scshape professor:\par}\@professor\vskip 1em}%
-        \@ifdef\@scribe{\textls[100]{\scshape scribe:\par}\@scribe\vskip 1em}%
-        \@ifdef\@authors{\textls[100]{\scshape authors:\par}\@authors\vskip 1em}%
-        \@ifdef\@place{\textls[100]{\scshape place:\par}\@place\vskip 1em}%
-        }%
-      }%
       %%% Course Information
       {%
         \Large%
@@ -211,7 +332,7 @@
       {%
         \itshape%
         {\itshape\huge\@thetitle\par}%
-        \@ifdef\@subtitle{\itshape\vskip 0.15em\Large\@subtitle\par}%
+        \@ifdef\@subtitle{\itshape\vskip0.1em\Large\@subtitle\par}%
         \vskip 0.75em%  
       }%
       % %%% Authors
@@ -233,13 +354,24 @@
       \@ifdef\@theyear{\@theyear}}%
       \vskip 0.75em%
     \end{center}%
-    \par
+    \par%
+    %%% Aside
+    \@ifnone\@nomargin{%
+      \marginpar
+      {%
+      %%% Authors
+      \vspace{3em}%
+      \@ifdef\@professor{\textls[100]{\scshape professor:\par}\@professor\vskip 1em}%
+      \@ifdef\@scribe{\textls[100]{\scshape scribe:\par}\@scribe\vskip 1em}%
+      \@ifdef\@authors{\textls[100]{\scshape authors:\par}\@authors\vskip 1em}%
+      \@ifdef\@place{\textls[100]{\scshape place:\par}\@place\vskip 1em}%
+      }%
+    }%
   }%
 }
 
 
 % table of Contents
-\RequirePackage[titles]{tocloft}
 \renewcommand{\cftsecfont}{}
 \renewcommand{\cftsubsecfont}{}
 \renewcommand{\cftsubsubsecfont}{}
@@ -258,7 +390,6 @@
   \newdimen\hfuzz%
   \hbadness=10000%
   \newdimen\hbadness%
-  \setstretch{0.95}
   \@ifdef\@coursetitle\@ifnone\@thetitle{\title{\@coursetitle}}
   \maketitle
   % \vskip 1em%
