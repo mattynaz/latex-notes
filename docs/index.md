@@ -62,6 +62,7 @@ Formatting the person commands, `\authors`, `\professor`, `scribe`, can be done 
 - `\and`,
 - `\thanks`,
 - and `\titlehref`:
+
 ```LaTeX
 % Seperate people with `\and` and add footnotes with `\thanks`.
 \authors{First Person \and Second Person\thanks{a footnote}}
@@ -74,8 +75,8 @@ Formatting the person commands, `\authors`, `\professor`, `scribe`, can be done 
 ```
 
 ### Examples
-Refer to the [example.tex](docs/examples/example.tex) file for an example on how to use some of the environments, commands, and shortcuts available in your document. Take a look at [example.pdf](docs/examples/example.pdf) to see the final product.
-I highly encourage looking at [theorems.pdf](docs/examples/theorems.pdf) to see how each of the 5 theorem style presets look compared to one another:
+Refer to the [example.tex](examples/example.tex) file for an example on how to use some of the environments, commands, and shortcuts available in your document. Take a look at [example.pdf](examples/example.pdf) to see the final product.
+I highly encourage looking at [theorems.pdf](examples/theorems.pdf) to see how each of the 5 theorem style presets look compared to one another:
 
 ![theorem presets](https://i.imgur.com/tg16Mae.png)
 
@@ -109,14 +110,14 @@ You can include options for your document by passing them like so: `\documentcla
 ### Environments
 There are custom environments already defined which you can use in your document
 
-1. Create a figure with `\begin{fig}[optional caption]` or `\begin{fig*}[optional caption]`:
+Create a figure with `\begin{fig}[optional caption]` or `\begin{fig*}[optional caption]`:
 ```LaTeX
 \begin{fig}[an optional caption]
   \includegraphics{graph}
 \end{marginfig}
 ```
 
-2. Place a figure in the margin with `\begin{marginfig}[optional caption]` or `\begin{marginfig*}[an optional caption]`:
+Place a figure in the margin with `\begin{marginfig}[optional caption]` or `\begin{marginfig*}[an optional caption]`:
 ```LaTeX
 \begin{marginfig}[the caption]
   \begin{tikzpicture}[main/.style = {draw, circle}]
@@ -125,7 +126,7 @@ There are custom environments already defined which you can use in your document
 \end{marginfig}
 ```
 
-3. Create a custom theorem environment with `\begin{theoremname}[optional term name]`:
+Create a custom theorem environment with `\begin{theoremname}[optional term name]`:
 ```LaTeX
 \begin{proposition}[A basic proposition]
   If $x = 10$, then 2 divides $y = \frac{x}{2}$.
@@ -135,7 +136,7 @@ There are custom environments already defined which you can use in your document
 ### Commands and Shortcuts
 There are some additional commands you can use _inside your document_, i.e. within `\begin{document}` and `\end{document}`, besides those which are already part of the blueprint given above:
 
-1. Fonts are specified with `\bold`, `\italics`, `\normalfont`, `\smallcaps`, and `\spacedletters`. These also have command forms that won't override eachother. Note that `\normalfont` overrides any font styling:
+Fonts are specified with `\bold`, `\italics`, `\normalfont`, `\smallcaps`, and `\spacedletters`. These also have command forms that won't override eachother. Note that `\normalfont` overrides any font styling:
 ```LaTeX
 \bf{This text is bold.}
 {\bold That is equivalent to this.}
@@ -152,28 +153,15 @@ There are some additional commands you can use _inside your document_, i.e. with
 \bf{\normalfont This text is normal since it was normalized.}
 ```
 
-2. There are also many math shortcuts. Not all are specified here, so taking a peak inside the `.cls` file might be useful.
-<!-- ```LaTeX
-% Probability
-$$
-  \iid
-  \E
-  \Var
-  \SD
-  \MSE
-  \bias
-$$
-% Probability
-% Probability
-``` -->
+There are also many math shortcuts. Not all are specified here, so taking a peak inside the `.cls` file might be useful.
 
-3. Place somethin in the margin with `\marginpar[optional vspace]{...}`:
+Place somethin in the margin with `\marginpar[optional vspace]{...}`:
 ```LaTeX
 This is a paragraph.
 \marginpar[1in]{\italics This is a side note placed 1in above the end the paragraph.}
 ```
 
-4. Create a new theorem with `\newtheorem{name}{Display name}[options][counter]`:
+Create a new theorem with `\newtheorem{name}{Display name}[options][counter]`:
 ```LaTeX
 \newtheorem{thm}{Theorem}[
   style      = {boxed}, % only one of: plain/boxed/colorbox/flashcard
@@ -199,6 +187,7 @@ This is a paragraph.
 ### 1.1
 - Added theorem preset examples to `README.MD`.
 - Added `notitle` and `noheader` options.
+
 ### 1.0
 Initial release.
 
