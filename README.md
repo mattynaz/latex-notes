@@ -75,6 +75,8 @@ Formatting the person commands, `\authors`, `\professor`, `scribe`, can be done 
 
 ### Examples
 Refer to the [example.tex](example/example.tex) file for an example on how to use some of the environments, commands, and shortcuts available in your document. Take a look at [example.pdf](example/example.pdf) to see the final product.
+I highly encourage looking at [theorems.pdf](example/theorems.pdf) to see how each of the 5 theorem style presets look compared to one another:
+<div style="text-align:center"><img src="https://i.imgur.com/tg16Mae.png" alt="theorem presets" width="65%"/></div>
 
 ### Options
 You can include options for your document by passing them like so: `\documentclass[options, go, here]{notes}`. All of the options available are below:
@@ -90,10 +92,12 @@ You can include options for your document by passing them like so: `\documentcla
 2. Tune the formatting of your document:
 - `plainnums` for plain numeral styles versus the default old style numerals
 - `twoside` for printing
-- `notablecontents` for no table of contents
 - `centertitle` centers the title text 
-- `nomargin` for symmetric margins
 - `titlepage` have the title be on its own page
+- `nomargin` for symmetric margins
+- `noheader` for no header
+- `notablecontents` for no table of contents
+- `notitle` for no title
 
 3. Date formats
 - `isodate` *YYYY-MM-DD*
@@ -171,7 +175,7 @@ This is a paragraph.
 4. Create a new theorem with `\newtheorem{name}{Display name}[options][counter]`:
 ```LaTeX
 \newtheorem{thm}{Theorem}[
-  style      = {boxed}, % only one of: plain/boxed/colorbox/flashcards
+  style      = {boxed}, % only one of: plain/boxed/colorbox/flashcard
   nocounter  = {false}, % only either: true/false
   big        = {false}, % only either: true/false
   titlefont  = {\bold},
@@ -191,6 +195,9 @@ This is a paragraph.
 
 
 ## Version history
+### 1.1
+- Added theorem preset examples to `README.MD`.
+- Added `notitle` and `noheader` options.
 ### 1.0
 Initial release.
 

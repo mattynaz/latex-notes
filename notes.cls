@@ -37,6 +37,8 @@
 \DeclareOption{centertitle}{\def\notes@opt@centertitle{}}
 \DeclareOption{notablecontents}{\def\notes@opt@notoc{}}
 \DeclareOption{nomargin}{\def\notes@opt@nomargin{}}
+\DeclareOption{notitle}{\def\notes@opt@notitle{}}
+\DeclareOption{noheader}{\def\notes@opt@noheader{}}
 
 % environment styles
 \DeclareOption{notheorems}{\def\notes@opt@nothms{}}
@@ -482,13 +484,14 @@
 
 
 % header and footer
-\pagestyle{fancy}
-\fancyhf{}
-\renewcommand{\sectionmark}[1]{\markboth{#1}{}}
-\fancyhead[L]{\footnotesize\smallcaps\thesection{\hskip1em}\leftmark}
-\fancyhead[R]{\footnotesize\smallcaps\@elifdef{\notes@ctitle}{\notes@ctitle}{\notes@title}\hskip1em\thepage}
-\renewcommand\headrulewidth\notes@rulewidth
-
+\@ifnone\notes@opt@noheader{
+  \pagestyle{fancy}
+  \fancyhf{}
+  \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+  \fancyhead[L]{\footnotesize\smallcaps\thesection{\hskip1em}\leftmark}
+  \fancyhead[R]{\footnotesize\smallcaps\@elifdef{\notes@ctitle}{\notes@ctitle}{\notes@title}\hskip1em\thepage}
+  \renewcommand\headrulewidth\notes@rulewidth
+}
 
 % section headers
 \titleformat{\section}{\relax\Large\spacedletters}{\thesection}{1em}{\italics}
@@ -523,10 +526,10 @@
   \setlength{\belowdisplayshortskip}{0.5em}%
   %
   % default title values
-  \@ifdef\notes@ctitle\@ifnone\notes@title{\title{\notes@ctitle}}%
+  \@ifdef\notes@ctitle{\@ifnone\notes@title{\title{\notes@ctitle}}}%
   %
   % document begin
-  \maketitle%
+  \@ifnone\notes@opt@notitle{\maketitle}%
   \@ifnone\notes@opt@notoc{%
     \vskip 1em%
     \tableofcontents%  

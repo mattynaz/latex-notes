@@ -1,0 +1,31 @@
+\documentclass[notheorems, nomargin, notablecontents, notitle, noheader]{notes}
+
+\newtheorem{plain style}{Example}[style=plain,big=false,bodyfont={\normalfont},termfont={\bold\italics}]
+\newtheorem{boxed style}{Example}[style=boxed,big=true,backcolor=white,bodyfont={\normalfont},termfont={\bold\italics}]
+\newtheorem{flashcard style}{Example}[style=flashcard,big=true,framecolor=red!90!black!60,backcolor=white,bodyfont={\normalfont},termfont={\bold\italics}]
+\newtheorem{graybox style}{Example}[style=colorbox,big=true,bodyfont={\normalfont},termfont={\bold\italics},backcolor=black!5]
+\newtheorem{colorbox style}{Example}[style=colorbox,big=true,bodyfont={\normalfont},termfont={\bold\italics},backcolor=black!25!red!9]
+
+\begin{document}
+  \stepcounter{section}
+  \pagestyle{empty}
+  \begin{plain style}[plain preset]
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non tellus malesuada, scelerisque leo ultrices, hendrerit velit. In iaculis vestibulum massa. Maecenas aliquam, ligula quis luctus dignissim, lorem ex egestas augue, aliquam finibus nibh urna at massa. Maecenas consequat, urna et posuere varius, nunc augue aliquet nulla, pulvinar venenatis nulla mauris pulvinar lorem.
+  \end{plain style}
+  \vskip2.5em
+  \begin{boxed style}[boxed preset]
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non tellus malesuada, scelerisque leo ultrices, hendrerit velit. In iaculis vestibulum massa. Maecenas aliquam, ligula quis luctus dignissim, lorem ex egestas augue, aliquam finibus nibh urna at massa. Maecenas consequat, urna et posuere varius, nunc augue aliquet nulla, pulvinar venenatis nulla mauris pulvinar lorem.
+  \end{boxed style}
+  \vskip2.5em
+  \begin{flashcard style}[flashcard preset]
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non tellus malesuada, scelerisque leo ultrices, hendrerit velit. In iaculis vestibulum massa. Maecenas aliquam, ligula quis luctus dignissim, lorem ex egestas augue, aliquam finibus nibh urna at massa. Maecenas consequat, urna et posuere varius, nunc augue aliquet nulla, pulvinar venenatis nulla mauris pulvinar lorem.
+  \end{flashcard style}
+  \vskip2.5em
+  \begin{graybox style}[graybox preset]
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non tellus malesuada, scelerisque leo ultrices, hendrerit velit. In iaculis vestibulum massa. Maecenas aliquam, ligula quis luctus dignissim, lorem ex egestas augue, aliquam finibus nibh urna at massa. Maecenas consequat, urna et posuere varius, nunc augue aliquet nulla, pulvinar venenatis nulla mauris pulvinar lorem.
+  \end{graybox style}
+  \vskip2.5em
+  \begin{colorbox style}[colorbox preset]
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non tellus malesuada, scelerisque leo ultrices, hendrerit velit. In iaculis vestibulum massa. Maecenas aliquam, ligula quis luctus dignissim, lorem ex egestas augue, aliquam finibus nibh urna at massa. Maecenas consequat, urna et posuere varius, nunc augue aliquet nulla, pulvinar venenatis nulla mauris pulvinar lorem.
+  \end{colorbox style}
+\end{document}
