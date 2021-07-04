@@ -75,8 +75,7 @@ Formatting the person commands, `\authors`, `\professor`, `scribe`, can be done 
 
 ### Examples
 Refer to the [example.tex](example/example.tex) file for an example on how to use some of the environments, commands, and shortcuts available in your document. Take a look at [example.pdf](example/example.pdf) to see the final product.
-I highly encourage looking at [theorems.pdf](example/theorems.pdf) to see how each of the 5 theorem style presets look compared to one another:
-<div style="text-align:center"><img src="https://i.imgur.com/tg16Mae.png" alt="theorem presets" width="65%"/></div>
+I highly encourage looking at [theorems.pdf](example/theorems.pdf) to see how each of the 5 theorem style presets look compared to one another: ![theorem presets](https://i.imgur.com/tg16Mae.png)
 
 ### Options
 You can include options for your document by passing them like so: `\documentclass[options, go, here]{notes}`. All of the options available are below:
