@@ -6,7 +6,7 @@
 
 **Author:** Matthew A. Nazari
 
-**Current release:** v0.1.0 <a href="https://github.com/mattynaz/latex-notes/releases/latest"><img src="https://img.shields.io/badge/Download-latest%20release-brightgreen.svg" style="vertical-align: text-bottom;margin-left: 1.5em;"></a>
+**Current release:** v1.0 <a href="https://github.com/mattynaz/latex-notes/releases/latest"><img src="https://img.shields.io/badge/Download-latest%20release-brightgreen.svg" style="vertical-align: text-bottom;margin-left: 1.5em;"></a>
 
 **Description:** A LaTeX document class built lecture notes and textbooks.
 
